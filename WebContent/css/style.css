@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+body
+{
+	 margin: 0;
+    padding: 0;
+    width: 970px;
+}
+
+.header-wrapper{
+	 width: 100%;
+    background-color: #ddd;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+
+}
