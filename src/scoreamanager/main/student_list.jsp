@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<p1>student_list.jsp</p1>
 </head>
 <body>
-
+<h2>学生管理</h2>
+<label for="year">入学年度</label>
+<select id="year" name="year"></select>
 </body>
 </html>
