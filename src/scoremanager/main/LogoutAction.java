@@ -1,4 +1,4 @@
-package scoreamanager.main;
+package scoremanager.main;
 
 public class LogoutAction {
 

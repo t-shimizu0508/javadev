@@ -1,4 +1,4 @@
-package scoreamanager;
+package scoremanager;
 
 public class LoginAction {
 
