@@ -3,15 +3,33 @@ body
 {
 	 margin: 0;
     padding: 0;
-    width: 970px;
+    margin-left: 10%;
+  	margin-right: 10%;
+
 }
 
 .header-wrapper{
-	 width: 100%;
-    background-color: #ddd;
-    padding: 15px;
-    font-size: 24px;
+    background-color: #DEEBF7;
+    padding: 20px;
+    font-size: 20px;
     font-weight: bold;
     border-bottom: 1px solid #ccc;
 
 }
+
+.header-wrapper,h1{
+	margin: 0px
+}
+
+
+footer{
+	background-color: #ddd;
+	text-align: center;
+    border-bottom: 1px solid #ccc;
+
+}
+
+footer,p{
+	margin: 2px
+}
+
