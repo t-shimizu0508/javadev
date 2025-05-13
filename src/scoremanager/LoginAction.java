@@ -1,5 +1,18 @@
 package scoremanager;
 
-public class LoginAction {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import tool.Action;
+
+public class LoginAction extends Action {
+	public String execute(
+		HttpServletRequest request, HttpServletResponse response
+	) throws Exception {
+
+
+		System.out.println("LoginActionが実行されました");
+		return "login.jsp";
+	}
 }
+

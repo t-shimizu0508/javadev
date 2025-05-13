@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <jsp:include page="header.jsp" flush="true" />
+    <%@ include file="../header.jsp" %>
 
-    <form action="LoginServlet" method="post">
+    <form action="scoremanager.LoginExecute.action" method="post">
+    	<h2>ログイン</h2>
         <label for="loginId">ログインID:</label>
         <input type="text" id="loginId" name="loginId" required /><br/>
 
@@ -14,16 +15,6 @@
         <input type="submit" value="ログイン" />
     </form>
 
-    <script>
-        function togglePassword() {
-            var passwordField = document.getElementById("password");
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-            } else {
-                passwordField.type = "password";
-            }
-        }
-    </script>
 
-    <jsp:include page="footer.jsp" flush="true" />
+    <%@ include file="../footer.jsp" %>
 
