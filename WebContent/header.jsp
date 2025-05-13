@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="bean.Teacher" %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -10,6 +11,18 @@
 <body>
 <div class="header-wrapper">
     <h1>得点管理システム</h1>
-    <span></span>
-    <a></a>
+    <%
+        Teacher teacher = (Teacher) session.getAttribute("teacher");
+        if (teacher != null) {
+    %>
+        <span><%= teacher.getName() %></span>
+        <a href="<%= request.getContextPath() %>/scoremanager/logout.action">ログアウト</a>
+    <%
+        } else {
+    %>
+        <span>ログインしていません</span>
+    <%
+        }
+    %>
+
 </div>

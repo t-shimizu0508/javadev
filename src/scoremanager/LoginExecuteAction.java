@@ -15,7 +15,7 @@ public class LoginExecuteAction extends Action {
 
 		HttpSession session=request.getSession();
 
-		String id=request.getParameter("ID");
+		String id=request.getParameter("loginId");
 		String password=request.getParameter("password");
 
 		TeacherDao dao=new TeacherDao();
@@ -23,10 +23,12 @@ public class LoginExecuteAction extends Action {
 
 		if (teacher!=null) {
 			session.setAttribute("teacher", teacher);
+			session.setAttribute("teacherName", teacher.getName());
 			return "scoremanager/index.jsp";
 		}
 
-		return "error.jsp";
+		request.setAttribute("error", "ログインに失敗しました。IDまたはパスワードが間違っています。");
+		return "login.jsp";
 	}
 }
 

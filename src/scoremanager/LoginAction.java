@@ -11,7 +11,6 @@ public class LoginAction extends Action {
 	) throws Exception {
 
 
-		System.out.println("LoginActionが実行されました");
 		return "login.jsp";
 	}
 }
