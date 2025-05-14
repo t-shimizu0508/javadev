@@ -24,7 +24,7 @@ public class LoginExecuteAction extends Action {
 		if (teacher!=null) {
 			session.setAttribute("teacher", teacher);
 			session.setAttribute("teacherName", teacher.getName());
-			return "scoremanager/index.jsp";
+			return "scoremanager/menu.jsp";
 		}
 
 		request.setAttribute("error", "ログインに失敗しました。IDまたはパスワードが間違っています。");

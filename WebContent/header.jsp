@@ -16,7 +16,7 @@
         if (teacher != null) {
     %>
         <span><%= teacher.getName() %></span>
-        <a href="<%= request.getContextPath() %>/scoremanager/logout.action">ログアウト</a>
+        <a href="<%= request.getContextPath() %>/scoremanager.main.Logout.action">ログアウト</a>
     <%
         } else {
     %>
