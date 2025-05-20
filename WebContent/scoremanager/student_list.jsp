@@ -4,6 +4,4 @@
  <%@ include file="index.jsp" %>
  <h2>学生管理</h2>
 
-
-
  <%@ include file="../footer.jsp" %>
