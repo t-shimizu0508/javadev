@@ -19,11 +19,12 @@ public class LoginExecuteAction extends Action {
 		String password=request.getParameter("password");
 
 		TeacherDao dao=new TeacherDao();
-		Teacher teacher=dao.search(id, password);
+		Teacher teacher=dao.login(id, password);
 
 		if (teacher!=null) {
 			session.setAttribute("teacher", teacher);
 			session.setAttribute("teacherName", teacher.getName());
+			teacher.setAuthenticated(true);
 			return "scoremanager.Manu.action";
 		}
 
