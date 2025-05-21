@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Teacher;
+import bean.User;
 import tool.Action;
 
 public class ManuAction extends Action {
@@ -12,15 +12,15 @@ public class ManuAction extends Action {
 		HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
 
-	    HttpSession session = request.getSession();
-        Teacher teacher = (Teacher) session.getAttribute("isAuthenticated");
+		HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user"); // セッションからUserを取得
 
-        if (teacher.isAuthenticated()==true) {
-            // 認証済みならメニュー画面へ
+        if (user != null) {
+            // 認証されていたらメニューページへ
             return "scoremanager/menu.jsp";
         } else {
-            // 未認証ならログインページに戻すなど
-            return "scoremanager/login.jsp";
+            // 未認証ならログインページへ
+            return "login.jsp";
         }
 
 	}
