@@ -14,12 +14,11 @@ public class LogoutAction extends Action {
         user.setAuthenticated(false);
         session.setAttribute("user", user);
 
-
-
-        if (session != null) {
+        if (user == null || !user.isAuthenticated()) {
             session.invalidate();
+            return "scoremanager/logout.jsp";
         }
 
-        return "scoremanager/logout.jsp";
+        return "scoremanager.Manu.action";
     }
 }

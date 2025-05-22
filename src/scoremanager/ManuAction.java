@@ -15,7 +15,7 @@ public class ManuAction extends Action {
 		HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user"); // セッションからUserを取得
 
-        if (user != null) {
+        if (user != null && user.isAuthenticated()) {
             // 認証されていたらメニューページへ
             return "scoremanager/menu.jsp";
         } else {

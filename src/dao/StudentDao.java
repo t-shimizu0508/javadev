@@ -81,7 +81,7 @@ public class StudentDao extends DAO {
 
 	        try (Connection con = getConnection();
 	             PreparedStatement st = con.prepareStatement(
-	                 baseSql + " WHERE school_id=? AND ent_year=? AND is_attend=?")) {
+	                 baseSql + " WHERE school=? AND entYear=? AND isAttend=?")) {
 
 	        	st.setString(1, school.getCd());
 	            st.setInt(2, entYear);
@@ -102,7 +102,7 @@ public class StudentDao extends DAO {
 
 	        try (Connection con = getConnection();
 	             PreparedStatement st = con.prepareStatement(
-	                 baseSql + " WHERE school_id=? AND is_attend=?")) {
+	                 baseSql + " WHERE school=? AND isAttend=?")) {
 
 	        	st.setString(1, school.getCd());
 	            st.setBoolean(2, isAttend);
