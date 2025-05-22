@@ -17,7 +17,8 @@ public class StudentListAction extends Action{
 	            // 認証されていたら学生情報表示
 	        	Student student=new Student();
 	        	if (student!=null) {
-	    			session.setAttribute("stdent", student);
+//	        		 List<Student> studentList = postFilter;
+//	                 request.setAttribute("studentList", studentList);
 	    			return "scoremanager/student_list.jsp";
 	        	}
 
