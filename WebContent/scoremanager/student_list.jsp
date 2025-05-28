@@ -5,12 +5,13 @@
  <%@ include file="../header.jsp" %>
  <%@ include file="index.jsp" %>
  <h2>学生管理</h2>
+ <a href="<%= request.getContextPath() %>/scoremanager/student_create.jsp">新規登録</a>
     <form action="/student/list" method="get">
         入学年度：
         <select name="entYear">
             <option value="">----</option>
             <%
-                for (int y = 2020; y <= 2025; y++) {
+                for (int y = 2015; y <= 2025; y++) {
                     out.println("<option value='" + y + "'>" + y + "</option>");
                 }
             %>
