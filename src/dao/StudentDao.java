@@ -45,21 +45,40 @@ public class StudentDao extends DAO {
 	            Student s = new Student();
 	            s.setNo(rs.getString("no"));
 	            s.setName(rs.getString("name"));
-	            s.setClassNum(rs.getString("classNum"));
-	            s.setEntYear(rs.getInt("entYear"));
-	            s.setAttend(rs.getBoolean("isAttend"));
+	            s.setClassNum(rs.getString("class_Num"));
+	            s.setEntYear(rs.getInt("ent_Year"));
+	            s.setAttend(rs.getBoolean("is_Attend"));
 	            s.setSchool(school);
 	            list.add(s);
 	        }
 	        return list;
 	    }
 
+	    public List<Student> filter(School school) {
+	        List<Student> list = new ArrayList<>();
+
+	        try (Connection con = getConnection();
+	             PreparedStatement st = con.prepareStatement(baseSql + " WHERE school_cd=?")) {
+
+	            st.setString(1, school.getCd());
+	            ResultSet rs = st.executeQuery();
+	            list = postFilter(rs, school);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+	        return list;
+	    }
+
+
+
 	    public List<Student> filter(School school, int entYear, String classNum, boolean isAttend) {
 	        List<Student> list = new ArrayList<>();
 
 	        try (Connection con = getConnection();
 	             PreparedStatement st = con.prepareStatement(
-	                 baseSql + " WHERE school=? AND entYear=? AND classNum=? AND isAttend=?")) {
+	                 baseSql + " WHERE school_cd=? AND entYear=? AND classNum=? AND isAttend=?")) {
 
 	        	st.setString(1, school.getCd());
 	            st.setInt(2, entYear);
@@ -81,7 +100,7 @@ public class StudentDao extends DAO {
 
 	        try (Connection con = getConnection();
 	             PreparedStatement st = con.prepareStatement(
-	                 baseSql + " WHERE school=? AND entYear=? AND isAttend=?")) {
+	                 baseSql + " WHERE school_cd=? AND entYear=? AND isAttend=?")) {
 
 	        	st.setString(1, school.getCd());
 	            st.setInt(2, entYear);
@@ -102,7 +121,7 @@ public class StudentDao extends DAO {
 
 	        try (Connection con = getConnection();
 	             PreparedStatement st = con.prepareStatement(
-	                 baseSql + " WHERE school=? AND isAttend=?")) {
+	                 baseSql + " WHERE school_cd=? AND isAttend=?")) {
 
 	        	st.setString(1, school.getCd());
 	            st.setBoolean(2, isAttend);

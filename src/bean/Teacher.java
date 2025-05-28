@@ -4,7 +4,7 @@ public class Teacher extends User implements java.io.Serializable {
 	private String id;
 	private String password;
 	private String name;
-	private School school;
+	public School school;
 
 	public String getId() {
 		return id;

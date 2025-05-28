@@ -28,6 +28,7 @@ public class LoginExecuteAction extends Action {
 			session.setAttribute("teacherName", teacher.getName());
 			user.setAuthenticated(true);
 			session.setAttribute("user", user);
+			session.setAttribute("school", teacher.getSchool());
 			return "scoremanager.Manu.action";
 		}
 
