@@ -32,7 +32,7 @@ public class FrontController extends HttpServlet {
             // 例: "/chapter23/Search.action" → "chapter23/Search.action"
 
             // ② パスをアクションクラス名の形式に変換
-            String name = path.replace(".a", "A").replace('/', '.');
+            String name = path.replace(".action", "Action").replace('/', '.');
             // 例: "chapter23/Search.action" → "chapter23.SearchAction"
 
             // ③ アクションクラスのインスタンスを動的に生成

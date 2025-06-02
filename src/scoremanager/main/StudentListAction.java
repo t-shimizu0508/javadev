@@ -1,5 +1,6 @@
 package scoremanager.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,9 +38,15 @@ public class StudentListAction extends Action {
         if (hasEntYear && hasClassNum) {
             int entYear = Integer.parseInt(entYearParam);
             studentList = studentdao.filter(school, entYear, classNum, hasIsAttend);
+        } else if (hasEntYear && hasIsAttend) {
+            int entYear = Integer.parseInt(entYearParam);
+            studentList = studentdao.filter(school, entYear,hasIsAttend);
         } else if (hasEntYear) {
             int entYear = Integer.parseInt(entYearParam);
-            studentList = studentdao.filter(school, entYear, hasIsAttend);
+            studentList = studentdao.filter(school, entYear);
+        } else if (hasClassNum) {
+        	request.setAttribute("error", "クラスを指定する場合は学年も指定してください。");
+        	 studentList = new ArrayList<>();
         } else if (hasIsAttend) {
             studentList = studentdao.filter(school, hasIsAttend);
         } else {
@@ -48,6 +55,10 @@ public class StudentListAction extends Action {
         }
 
         request.setAttribute("studentList", studentList);
-        return "scoremanager/student_list.jsp";
+
+        // 明示的にJSPにフォワード
+        request.getRequestDispatcher("/scoremanager/student_list.jsp").forward(request, response);
+
+        return null; // フォワード済みなのでnull返し
     }
 }

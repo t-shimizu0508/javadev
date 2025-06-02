@@ -14,7 +14,7 @@ public class StudentDao extends DAO {
 	 private final String baseSql = "SELECT * FROM student";
 
 	    public String get(String no) {
-	    	 String countStr = "0";
+	        String countStr="0";
 
 	        try (Connection con = getConnection();
 	                PreparedStatement st = con.prepareStatement("SELECT COUNT(*) FROM student WHERE no = ?")) {
@@ -23,7 +23,7 @@ public class StudentDao extends DAO {
 	               ResultSet rs = st.executeQuery();
 
 	               if (rs.next()) {
-	                   countStr = String.valueOf(rs.getInt(1)); // int → String に変換
+	                   countStr = String.valueOf(rs.getInt(1));
 	               }
 
 	           } catch (Exception e) {
@@ -72,7 +72,7 @@ public class StudentDao extends DAO {
 
 	        try (Connection con = getConnection();
 	             PreparedStatement st = con.prepareStatement(
-	                 baseSql + " WHERE school_cd=? AND entYear=? AND classNum=? AND isAttend=?")) {
+	                 baseSql + " WHERE school_cd=? AND entYear=? AND classNum=? AND is_Attend=?")) {
 
 	        	st.setString(1, school.getCd());
 	            st.setInt(2, entYear);
@@ -94,7 +94,7 @@ public class StudentDao extends DAO {
 
 	        try (Connection con = getConnection();
 	             PreparedStatement st = con.prepareStatement(
-	                 baseSql + " WHERE school_cd=? AND entYear=? AND isAttend=?")) {
+	                 baseSql + " WHERE school_cd=? AND ent_Year=? AND is_Attend=?")) {
 
 	        	st.setString(1, school.getCd());
 	            st.setInt(2, entYear);
@@ -110,12 +110,32 @@ public class StudentDao extends DAO {
 	        return list;
 	    }
 
+	    public List<Student> filter(School school, int entYear) {
+	        List<Student> list = new ArrayList<>();
+
+	        try (Connection con = getConnection();
+	             PreparedStatement st = con.prepareStatement(
+	                 baseSql + " WHERE school_cd=? AND ent_Year=?")) {
+
+	            st.setString(1, school.getCd());
+	            st.setInt(2, entYear);
+
+	            ResultSet rs = st.executeQuery();
+	            list = postFilter(rs, school);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+	        return list;
+	    }
+	    
 	    public List<Student> filter(School school, boolean isAttend) {
 	        List<Student> list = new ArrayList<>();
 
 	        try (Connection con = getConnection();
 	             PreparedStatement st = con.prepareStatement(
-	                 baseSql + " WHERE school_cd=? AND isAttend=?")) {
+	                 baseSql + " WHERE school_cd=? AND is_Attend=?")) {
 
 	        	st.setString(1, school.getCd());
 	            st.setBoolean(2, isAttend);
