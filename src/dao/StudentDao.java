@@ -72,12 +72,33 @@ public class StudentDao extends DAO {
 
 	        try (Connection con = getConnection();
 	             PreparedStatement st = con.prepareStatement(
-	                 baseSql + " WHERE school_cd=? AND entYear=? AND classNum=? AND is_Attend=?")) {
+	                 baseSql + " WHERE school_cd=? AND ent_Year=? AND class_Num=? AND is_Attend=?")) {
 
 	        	st.setString(1, school.getCd());
 	            st.setInt(2, entYear);
 	            st.setString(3, classNum);
 	            st.setBoolean(4, isAttend);
+
+	            ResultSet rs = st.executeQuery();
+	            list = postFilter(rs, school);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+	        return list;
+	    }
+
+	    public List<Student> filter(School school, int entYear, String classNum) {
+	        List<Student> list = new ArrayList<>();
+
+	        try (Connection con = getConnection();
+	             PreparedStatement st = con.prepareStatement(
+	                 baseSql + " WHERE school_cd=? AND ent_Year=? AND class_Num=?")) {
+
+	        	st.setString(1, school.getCd());
+	            st.setInt(2, entYear);
+	            st.setString(3, classNum);
 
 	            ResultSet rs = st.executeQuery();
 	            list = postFilter(rs, school);
@@ -129,7 +150,7 @@ public class StudentDao extends DAO {
 
 	        return list;
 	    }
-	    
+
 	    public List<Student> filter(School school, boolean isAttend) {
 	        List<Student> list = new ArrayList<>();
 

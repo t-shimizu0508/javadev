@@ -35,9 +35,12 @@ public class StudentListAction extends Action {
         boolean hasClassNum = classNum != null && !classNum.isEmpty();
         boolean hasIsAttend = isAttendParam != null && isAttendParam.equals("true");
 
-        if (hasEntYear && hasClassNum) {
+        if (hasEntYear && hasClassNum && hasIsAttend) {
             int entYear = Integer.parseInt(entYearParam);
             studentList = studentdao.filter(school, entYear, classNum, hasIsAttend);
+        } else if (hasEntYear && hasClassNum) {
+            int entYear = Integer.parseInt(entYearParam);
+            studentList = studentdao.filter(school, entYear, classNum);
         } else if (hasEntYear && hasIsAttend) {
             int entYear = Integer.parseInt(entYearParam);
             studentList = studentdao.filter(school, entYear,hasIsAttend);
