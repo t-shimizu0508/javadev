@@ -48,7 +48,6 @@ public class StudentListAction extends Action {
         }
 
         request.setAttribute("studentList", studentList);
-
         return "scoremanager/student_list.jsp";
     }
 }

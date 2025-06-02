@@ -8,26 +8,50 @@
  <a href="<%= request.getContextPath() %>/scoremanager/student_create.jsp">新規登録</a>
     <form action="/student/list" method="get">
         入学年度：
-        <select name="entYear">
-            <option value="">----</option>
-            <%
-                for (int y = 2015; y <= 2025; y++) {
-                    out.println("<option value='" + y + "'>" + y + "</option>");
+		<select name="entYear">
+    		<option value="">----</option>
+    		<%
+    		    java.util.Calendar cal = java.util.Calendar.getInstance();
+        		int currentYear = cal.get(java.util.Calendar.YEAR);
+
+        		for (int y = currentYear - 5; y <= currentYear + 5; y++) {
+  			%>
+    		    <option value="<%= y %>"><%= y %></option>
+    		<%
+    		    }
+    		%>
+		</select>
+       クラス：
+<select name="classNum">
+    <option value="">----</option>
+    <%
+        List<Student> list = (List<Student>) request.getAttribute("studentList");
+        java.util.Set<String> classSet = new java.util.TreeSet<>(); // ソートもしたいなら TreeSet
+
+        if (list != null) {
+            for (Student s : list) {
+                if (s.getClassNum() != null && !s.getClassNum().isEmpty()) {
+                    classSet.add(s.getClassNum());
                 }
-            %>
-        </select>
-        クラス：
-        <select name="classNum">
-            <option value="">----</option>
-            <option value="201">201</option>
-            <option value="202">202</option>
-        </select>
+            }
+        }
+
+        for (String classNumOption : classSet) {
+    %>
+        <option value="<%= classNumOption %>"><%= classNumOption %></option>
+    <%
+        }
+    %>
+</select>
+
         在学中：<input type="checkbox" name="isAttend" value="true" />
         <input type="submit" value="絞り込み" />
     </form>
+<%
+    if (list != null && !list.isEmpty()) {
 
-    <hr>
-
+%>
+	<p>検索ヒット件数：<strong><%= list.size() %></strong> 件</p>
     <table border="1">
         <tr>
             <th>入学年度</th>
@@ -35,11 +59,10 @@
             <th>氏名</th>
             <th>クラス</th>
             <th>在学中</th>
+            <th>操作</th>
         </tr>
         <%
-            List<Student> list = (List<Student>) request.getAttribute("studentList");
-            if (list != null && !list.isEmpty()) {
-                for (Student s : list) {
+            for (Student s : list) {
         %>
         <tr>
             <td><%= s.getEntYear() %></td>
@@ -47,15 +70,17 @@
             <td><%= s.getName() %></td>
             <td><%= s.getClassNum() %></td>
             <td><%= s.isAttend() ? "○" : "×" %></td>
-            <td><a href="/student/edit?no=<%= s.getNo() %>">変更</a></td>
+            <td><a href="<%= request.getContextPath() %>/scoremanager/student_update.jsp">変更</a></td>
         </tr>
-        <%
-                }
-            } else {
-        %>
-        <tr><td colspan="6">該当する学生がいません。</td></tr>
         <%
             }
         %>
     </table>
+<%
+    } else {
+%>
+    <p>学生情報が存在しませんでした。</p>
+<%
+    }
+%>
  <%@ include file="../footer.jsp" %>
