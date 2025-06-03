@@ -13,25 +13,31 @@ import bean.Student;
 public class StudentDao extends DAO {
 	 private final String baseSql = "SELECT * FROM student";
 
-	    public String get(String no) {
-	        String countStr="0";
+	 public Student get(String no) {
+		    Student student = null;
 
-	        try (Connection con = getConnection();
-	                PreparedStatement st = con.prepareStatement("SELECT COUNT(*) FROM student WHERE no = ?")) {
+		    try (Connection con = getConnection();
+		         PreparedStatement st = con.prepareStatement("SELECT * FROM student WHERE no = ?")) {
 
-	               st.setString(1, no);
-	               ResultSet rs = st.executeQuery();
+		        st.setString(1, no);
+		        ResultSet rs = st.executeQuery();
 
-	               if (rs.next()) {
-	                   countStr = String.valueOf(rs.getInt(1));
-	               }
+		        if (rs.next()) {
+		            student = new Student();
+		            student.setNo(rs.getString("no"));
+		            student.setName(rs.getString("name"));
+		            student.setClassNum(rs.getString("class_Num"));
+		            student.setEntYear(rs.getInt("ent_Year"));
+		            student.setAttend(rs.getBoolean("is_Attend"));
+		        }
 
-	           } catch (Exception e) {
-	               e.printStackTrace();
-	           }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
 
-	           return countStr;
-	    }
+		    return student;
+		}
+
 
 	    private List<Student> postFilter(ResultSet rs, School school) throws SQLException {
 	        List<Student> list = new ArrayList<>();

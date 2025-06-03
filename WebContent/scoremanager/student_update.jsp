@@ -1,13 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<p1>student_update.jsp</p1>
-</head>
-<body>
+	pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp"%>
+<%@ include file="index.jsp"%>
 
-</body>
-</html>
+<h2>学生情報変更</h2>
+
+<form action="${pageContext.request.contextPath}/scoremanager.main.StudentSave.action" method="post">
+    <table class="student-form">
+        <tr>
+            <th>入学年度</th>
+            <td>
+                <span>${student.entYear}</span>
+                <input type="hidden" name="ent_year" value="${student.entYear}">
+            </td>
+        </tr>
+        <tr>
+            <th>学生番号</th>
+            <td>
+                <span>${student.no}</span>
+                <input type="hidden" name="no" value="${student.no}">
+            </td>
+        </tr>
+        <tr>
+            <th>氏名</th>
+            <td>
+                <input type="text" name="name" value="${student.name}" maxlength="30" required>
+            </td>
+        </tr>
+        <tr>
+            <th>クラス</th>
+            <td>
+                <select name="class_num">
+                    <c:forEach var="c" items="${classNumList}">
+                        <option value="${c}" ${c == student.classNum ? "selected" : ""}>${c}</option>
+                    </c:forEach>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>在学中</th>
+            <td>
+                <input type="checkbox" name="is_attend" value="true" ${student.attend ? "checked" : ""}>
+            </td>
+        </tr>
+    </table>
+
+    <div class="btn-area">
+        <input type="submit" value="変更">
+        <a href="${pageContext.request.contextPath}/scoremanager.main.StudentList.action">戻る</a>
+    </div>
+</form>
+
+<%@ include file="../footer.jsp"%>

@@ -70,8 +70,9 @@
 		<td><%= s.getName() %></td>
 		<td><%= s.getClassNum() %></td>
 		<td><%= s.isAttend() ? "○" : "×" %></td>
-		<td><a
-			href="<%= request.getContextPath() %>/scoremanager/student_update.jsp">変更</a></td>
+		<td>
+		<a href="<%= request.getContextPath() %>/scoremanager.main.StudentUpdate.action?no=<%= s.getNo() %>">変更</a>
+		</td>
 	</tr>
 	<%
             }
