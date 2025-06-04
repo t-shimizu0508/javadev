@@ -40,7 +40,7 @@ public class ClassNumDao extends DAO {
 
         try (Connection con = getConnection();
              PreparedStatement st = con.prepareStatement(
-                 "SELECT DISTINCT class_Num FROM class WHERE school_cd = ?")) {
+                 "SELECT DISTINCT class_Num FROM class_Num WHERE school_cd = ?")) {
 
             st.setString(1, school.getCd());
 
@@ -59,7 +59,7 @@ public class ClassNumDao extends DAO {
     public boolean save(ClassNum class_Num, String newClassNum) {
         try (Connection con = getConnection();
              PreparedStatement st = con.prepareStatement(
-                 "UPDATE class SET class_Num = ? WHERE class_Num = ? AND school_cd = ?")) {
+                 "UPDATE class_Num SET class_Num = ? WHERE class_Num = ? AND school_cd = ?")) {
 
             st.setString(1, newClassNum);
             st.setString(2, class_Num.getClass_num());

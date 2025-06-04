@@ -180,13 +180,14 @@ public class StudentDao extends DAO {
 	    public boolean save(Student student) {
 	        try (Connection con = getConnection();
 	             PreparedStatement st = con.prepareStatement(
-	                 "INSERT INTO student (no, name, classNum, entYear, isAttend, school) VALUES (?, ?, ?, ?, ?, ?)")) {
+	                 "UPDATE student SET name = ?, class_Num = ?, ent_Year = ?, is_Attend = ? WHERE no = ?"
+	             )) {
 
-	            st.setString(1, student.getNo());
-	            st.setString(2, student.getName());
-	            st.setString(3, student.getClassNum());
-	            st.setInt(4, student.getEntYear());
-	            st.setBoolean(5, student.isAttend());
+	            st.setString(1, student.getName());
+	            st.setString(2, student.getClassNum());
+	            st.setInt(3, student.getEntYear());
+	            st.setBoolean(4, student.isAttend());
+	            st.setString(5, student.getNo());
 
 	            int rows = st.executeUpdate();
 	            return rows > 0;
@@ -196,4 +197,5 @@ public class StudentDao extends DAO {
 	            return false;
 	        }
 	    }
+
 }

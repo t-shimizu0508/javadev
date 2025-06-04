@@ -10,6 +10,7 @@
 	<c:if test="${not empty error}">
    	 	<p style="color: red;">${error}</p>
 	</c:if>
+
 	入学年度： <select name="entYear">
 		<option value="">----</option>
 		<%
