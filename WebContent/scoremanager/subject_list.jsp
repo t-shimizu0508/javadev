@@ -6,7 +6,7 @@
  <h2>科目管理</h2>
 
 <div class="btn-area" style="text-align: right; margin-bottom: 10px;">
-    <a href="${pageContext.request.contextPath}/scoremanager/subject_create.jsp">新規登録</a>
+    <a href="${pageContext.request.contextPath}/scoremanager.main.SubjectCreate.action">新規登録</a>
 </div>
 
 <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse;">
