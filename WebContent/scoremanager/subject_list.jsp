@@ -21,8 +21,7 @@
             <td>${s.cd}</td>
             <td>${s.name}</td>
             <td><a href="${pageContext.request.contextPath}/scoremanager.main.SubjectUpdate.action?cd=${s.cd}">変更</a></td>
-            <td><a href="${pageContext.request.contextPath}/scoremanager.SubjectDeleteExecute.action?cd=${s.cd}"
-                   onclick="return confirm('本当に削除しますか？');">削除</a></td>
+            <td><a href="${pageContext.request.contextPath}/scoremanager.main.SubjectDelete.action?cd=${s.cd}">削除</a></td>
         </tr>
     </c:forEach>
 </table>

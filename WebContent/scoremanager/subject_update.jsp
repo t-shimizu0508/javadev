@@ -5,7 +5,7 @@
  <%@ include file="index.jsp" %>
 <h2>科目情報変更</h2>
 
-<form action="${pageContext.request.contextPath}/scoremanager.subject.SubjectUpdateExecute.action" method="post">
+<form action="${pageContext.request.contextPath}/scoremanager.main.SubjectUpdateExecute.action" method="post">
     <table border="0" cellpadding="8">
         <tr>
             <th>科目コード</th>
@@ -14,7 +14,7 @@
         <tr>
             <th>科目名</th>
             <td>
-                <input type="text" name="name" value="${subject.name}" size="40" required>
+                <input type="text" name="name" value="${subject.name}" size="20", maxlength="20" required>
                 <input type="hidden" name="cd" value="${subject.cd}">
             </td>
         </tr>
@@ -22,7 +22,7 @@
 
     <div style="margin-top: 20px;">
         <input type="submit" value="変更">
-        <a href="${pageContext.request.contextPath}/scoremanager.subject.SubjectList.action">戻る</a>
+        <a href="${pageContext.request.contextPath}/scoremanager.main.SubjectList.action">戻る</a>
     </div>
 </form>
 

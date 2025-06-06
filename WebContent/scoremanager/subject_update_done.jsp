@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<p1>subject_update_update.jsp</p1>
-</head>
-<body>
+ <%@ include file="../header.jsp" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ include file="index.jsp" %>
+<h2>科目情報変更</h2>
+<p>変更が完了しました。</p>
+<a href="<%= request.getContextPath() %>/scoremanager.main.SubjectList.action">科目一覧</a>
 
-</body>
-</html>
+ <%@ include file="../footer.jsp" %>
