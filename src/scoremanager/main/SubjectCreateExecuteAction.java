@@ -25,10 +25,16 @@ public class SubjectCreateExecuteAction extends Action {
 		 String cd = request.getParameter("cd");
 	     String name = request.getParameter("name");
 
-	     if(cd.length()>3){
-	    	 request.setAttribute("error", "科目コードは3文字以内で入力してください。");
+	  // 全角が含まれているかどうかのチェック
+	     if (!cd.matches("^[a-zA-Z0-9]{1,3}$")) {
+	         if (cd.length() > 3) {
+	             request.setAttribute("error", "科目コードは3文字以内で入力してください。");
+	         } else {
+	             request.setAttribute("error", "科目コードに全角文字は使用できません。");
+	         }
 	         return "scoremanager/subject_create.jsp";
 	     }
+
 
 	     SubjectDao dao = new SubjectDao();
 

@@ -14,8 +14,8 @@
         <tr>
             <th>科目名</th>
             <td>
-                <input type="text" name="name" value="${subject.name}" size="20", maxlength="20" required>
-                <input type="hidden" name="cd" value="${subject.cd}">
+                <input type="text" name="name" value="${subject.name}" size="20" maxlength="20" required>
+                <input type="hidden" name="cd" value="${subject.cd}" >
             </td>
         </tr>
     </table>

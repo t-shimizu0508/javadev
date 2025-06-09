@@ -5,10 +5,13 @@
 <%@ include file="../header.jsp"%>
 <%@ include file="index.jsp"%>
 <h2>学生管理</h2>
-<a href="<%= request.getContextPath() %>/scoremanager/student_create.jsp">新規登録</a>
-<form action="<%= request.getContextPath() %>/scoremanager/main/StudentList.action" method="get">
+<a
+	href="<%= request.getContextPath() %>/scoremanager/student_create.jsp">新規登録</a>
+<form
+	action="<%= request.getContextPath() %>/scoremanager/main/StudentList.action"
+	method="get">
 	<c:if test="${not empty error}">
-   	 	<p style="color: red;">${error}</p>
+		<p style="color: red;">${error}</p>
 	</c:if>
 
 	入学年度： <select name="entYear">
@@ -71,8 +74,8 @@
 		<td><%= s.getName() %></td>
 		<td><%= s.getClassNum() %></td>
 		<td><%= s.isAttend() ? "○" : "×" %></td>
-		<td>
-		<a href="<%= request.getContextPath() %>/scoremanager.main.StudentUpdate.action?no=<%= s.getNo() %>">変更</a>
+		<td><a
+			href="<%= request.getContextPath() %>/scoremanager.main.StudentUpdate.action?no=<%= s.getNo() %>">変更</a>
 		</td>
 	</tr>
 	<%
