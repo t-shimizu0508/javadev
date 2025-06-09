@@ -81,6 +81,20 @@ public class SubjectDao extends DAO {
             return false;
         }
     }
+    //追加
+    public void insert(Subject subject) throws Exception {
+        try (Connection con = getConnection();
+             PreparedStatement st = con.prepareStatement(
+                 "INSERT INTO subject (cd, name, school_cd) VALUES (?, ?, ?)")) {
+
+            st.setString(1, subject.getCd());
+            st.setString(2, subject.getName());
+            st.setString(3, subject.getSchool().getCd());
+
+            st.executeUpdate();
+        }
+    }
+
 
     // 科目削除
     public boolean delete(Subject subject) {

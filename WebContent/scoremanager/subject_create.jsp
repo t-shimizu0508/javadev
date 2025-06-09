@@ -8,8 +8,11 @@
 	action="${pageContext.request.contextPath}/scoremanager.main.SubjectCreateExecute.action"
 	method="post">
 	<!-- 科目コード -->
+	<c:if test="${not empty error}">
+    	<p style="color: red;">${error}</p>
+	</c:if>
 	<label for="cd">科目コード</label><br /> <input type="text" id="cd"
-		name="cd" value="${cd}" maxlength="3" required
+		name="cd" value="${cd}" maxlength="20" required
 		placeholder="科目コードを入力してください" /><br />
 	<br />
 
