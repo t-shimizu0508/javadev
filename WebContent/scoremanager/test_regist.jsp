@@ -67,6 +67,7 @@
 			科目：<strong>${subject.getName()}</strong> 回数：<strong>${f4}</strong>回
 		</p>
 	</c:if>
+
 	<c:if test="${not empty error}">
 		<p style="color: red">${error}</p>
 	</c:if>

@@ -38,6 +38,16 @@ public class TestRegistAction extends Action {
         String classNum     = request.getParameter("f2");
         String subjectCd    = request.getParameter("f3");
         String no           = request.getParameter("f4");
+        // 初期アクセス（パラメータが空）ならエラーにせず表示だけ
+        if ((entYearParam == null || entYearParam.isEmpty()) &&
+            (classNum      == null || classNum.isEmpty())     &&
+            (subjectCd     == null || subjectCd.isEmpty())    &&
+            (no            == null || no.isEmpty())) {
+
+            // 初期表示なので学生一覧を出さずにJSPへ
+            return "scoremanager/test_regist.jsp";
+        }
+
 
         // 未入力チェック
         if (entYearParam == null || entYearParam.isEmpty() ||
