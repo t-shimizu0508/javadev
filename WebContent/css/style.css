@@ -3,23 +3,41 @@ body
 {
 	 margin: 0;
     padding: 0;
-    margin-left: 10%;
-  	margin-right: 10%;
 
 }
 
-.header-wrapper{
-    background-color: #DEEBF7;
+.header-wrapper {
+    position: relative;
     padding: 20px;
-    font-size: 20px;
+    background-color: #DEEBF7;
+}
+
+.header-wrapper h1 {
+    margin: 0;
+}
+
+.header-user {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-user span {
     font-weight: bold;
-    border-bottom: 1px solid #ccc;
-
 }
 
-.header-wrapper,h1{
-	margin: 0px
+.header-user a {
+    text-decoration: none;
+    color: #007BFF;
 }
+
+.header-user a:hover {
+    text-decoration: underline;
+}
+
 
 
 footer{
@@ -29,12 +47,54 @@ footer{
 
 }
 
-footer,p{
-	margin: 2px
+.logout{
+	 width: 80%;
+	 margin: 0 auto;
+	 display: block;
+}
+
+h2 {
+    background-color: #e0e0e0;  /* 薄いグレー背景 */
+    color: #333333;             /* 濃いグレー文字 */
+    padding: 10px;
+}
+
+/* p 要素に緑背景と白文字色 */
+.logout-message {
+    background-color: #00AB8A;  /* 緑色背景 */
+    color: white;               /* 白文字 */
+    padding: 5px;
+    margin-bottom: 50px;
 }
 
 
+.left-menu ul {
+    list-style: none;
+    padding-left: 10;
+    margin-top: 40px;
+}
 
+.left-menu li {
+    margin-bottom: 10px;
+}
+
+.left-menu .sub-menu {
+    margin-top: 5px;
+}
+
+
+.main-wrapper {
+    display: flex;
+    gap: 20px; /* 間隔を調整 */
+}
+
+.content-area {
+    flex: 3; /* 左側のindex.jsp部分を広めに */
+}
+
+.menu-container_2 {
+    flex: 1; /* 右側のメニューを少し狭めに */
+}
 
 
 

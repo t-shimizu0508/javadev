@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-
+<div class="login-wrapper">
 <form action="scoremanager.LoginExecute.action" method="post" onsubmit="return validateForm()">
-    <h2>ログイン</h2>
+<h2>ログイン</h2>
     <% String error = (String) request.getAttribute("error"); %>
     <% if (error != null) { %>
     <p style="color: red;"><%= error %></p>
@@ -55,5 +55,6 @@
     }
     </script>
 </form>
+</div>
 
 <%@ include file="../footer.jsp" %>

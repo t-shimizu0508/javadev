@@ -6,7 +6,7 @@
 <%@ include file="index.jsp"%>
 <h2>学生管理</h2>
 <a
-	href="<%= request.getContextPath() %>/scoremanager/student_create.jsp">新規登録</a>
+	href="<%= request.getContextPath() %>/scoremanager.main.StudentCreate.action">新規登録</a>
 <form
 	action="<%= request.getContextPath() %>/scoremanager/main/StudentList.action"
 	method="get">
