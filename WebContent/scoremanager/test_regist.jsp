@@ -101,7 +101,8 @@
 
 		<!-- 共通 Hidden -->
 		<input type="hidden" name="subject" value="${f3}" /> <input
-			type="hidden" name="count" value="${f4}" />
+			type="hidden" name="count" value="${f4}" /> <input type="hidden"
+			name="class_num" value="${f2}" />
 
 		<!-- 登録ボタン -->
 		<input type="submit" value="登録して終了" />

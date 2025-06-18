@@ -11,7 +11,7 @@
 				<li><a
 					href="<%= request.getContextPath() %>/scoremanager.main.TestRegist.action">成績登録</a></li>
 				<li><a
-					href="<%= request.getContextPath() %>/scoremanager/test_list.jsp">成績参照</a></li>
+					href="<%= request.getContextPath() %>/scoremanager.main.TestList.action">成績参照</a></li>
 			</ul>
 		</li>
 		<li><a

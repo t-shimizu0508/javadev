@@ -198,4 +198,46 @@ public class StudentDao extends DAO {
 	        }
 	    }
 
+	    public boolean insert(Student student) {
+	        String sql = "INSERT INTO student "
+	                   + "(no, name, class_Num, ent_Year, is_Attend, school_cd) "
+	                   + "VALUES (?, ?, ?, ?, ?, ?)";
+
+	        try (Connection con = getConnection();
+	             PreparedStatement st = con.prepareStatement(sql)) {
+
+	            st.setString(1, student.getNo());
+	            st.setString(2, student.getName());
+	            st.setString(3, student.getClassNum());
+	            st.setInt   (4, student.getEntYear());
+	            st.setBoolean(5, student.isAttend());
+	            st.setString(6, student.getSchool().getCd());
+
+	            return st.executeUpdate() > 0;
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
+
+	    public boolean exists(String no) {
+	        String sql = "SELECT COUNT(*) FROM student WHERE no = ?";
+
+	        try (Connection con = getConnection();
+	             PreparedStatement st = con.prepareStatement(sql)) {
+
+	            st.setString(1, no);
+	            ResultSet rs = st.executeQuery();
+
+	            if (rs.next()) {
+	                return rs.getInt(1) > 0;
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+	        return false;
+	    }
+
 }

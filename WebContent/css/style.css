@@ -96,8 +96,123 @@ h2 {
     flex: 1; /* 右側のメニューを少し狭めに */
 }
 
+.menu-button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.menu-button {
+    width: 200px;
+    height: 150px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.menu-button:hover {
+    transform: scale(1.05);
+}
+
+/* 色ごとにクラスを分ける */
+.menu-red {
+    background-color: #F28B82;
+}
+
+.menu-green {
+    background-color: #81C995;
+}
+
+.menu-purple {
+    background-color: #B39DDB;
+}
+
+/* 成績管理の中のリンク配置用 */
+.menu-sub-links {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.menu-sub-links a {
+    color: white;
+    display: block;
+    margin-top: 5px;
+    text-decoration: underline;
+}
+
+.left-menu {
+    padding: 20px 10px 20px 20px;
+    border-right: 2px solid #ccc; /* 右側の縦線 */
+    font-size: 16px;
+}
+
+.left-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.left-menu li {
+    margin-bottom: 18px; /* メニュー項目の間隔を広めに */
+}
+
+.left-menu a {
+    color: #007BFF; /* リンク文字を青く */
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px; /* 文字間に少し隙間 */
+    transition: color 0.3s;
+}
+
+.left-menu a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.left-menu .sub-menu {
+    margin-top: 6px;
+    margin-left: 15px;
+    padding-left: 10px;
+    border-left: 2px solid #ddd; /* サブメニューの左に補助線（任意） */
+}
+
+.left-menu .sub-menu li {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
 
 
+.menu-area {
+    width: 100%;
+    text-align: center;   /* 見出しを中央寄せ */
+    margin-top: 30px;     /* 上側に余白 */
+}
+
+.menu-title {            /* <h2 class="menu-title">メニュー</h2> 用 */
+    background: none;    /* 既存 h2 のグレー背景を無効化 */
+    color: #333333;
+    font-size: 24px;
+    margin: 0 0 20px;    /* 下だけ余白 */
+    padding: 0;
+}
+
+/* ボタンが中央に集まりつつレスポンシブに折り返す */
+.menu-button-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;     /* 狭い画面では折り返す */
+    gap: 30px;
+    margin-top: 10px;    /* 見出しとボタンの間隔 */
+}
 
 
 

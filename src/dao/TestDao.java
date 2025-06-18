@@ -143,19 +143,48 @@ public class TestDao extends DAO {
 
     // テスト1件を保存（外部Connection受け取り）
     public boolean save(Test test, Connection con) {
-        try (PreparedStatement st = con.prepareStatement(
-                "INSERT INTO test (student_no, subject_cd, school_cd, no, point, class_num) " +
-                "VALUES (?, ?, ?, ?, ?, ?)")) {
+        try {
+            // 既存チェック用SQL
+            String checkSql = "SELECT COUNT(*) FROM test WHERE student_no = ? AND subject_cd = ? AND school_cd = ? AND no = ?";
+            try (PreparedStatement checkSt = con.prepareStatement(checkSql)) {
+                checkSt.setString(1, test.getStudent().getNo());
+                checkSt.setString(2, test.getSubject().getCd());
+                checkSt.setString(3, test.getSchool().getCd());
+                checkSt.setInt(4, test.getNo());
 
-            st.setString(1, test.getStudent().getNo());
-            st.setString(2, test.getSubject().getCd());
-            st.setString(3, test.getSchool().getCd());
-            st.setInt(4, test.getNo());
-            st.setInt(5, test.getPoint());
-            st.setString(6, test.getClassNum());
+                ResultSet rs = checkSt.executeQuery();
+                if (rs.next() && rs.getInt(1) > 0) {
+                    // すでに存在 → UPDATE
+                    try (PreparedStatement updateSt = con.prepareStatement(
+                            "UPDATE test SET point = ?, class_num = ? " +
+                            "WHERE student_no = ? AND subject_cd = ? AND school_cd = ? AND no = ?")) {
+                        updateSt.setInt(1, test.getPoint());
+                        updateSt.setString(2, test.getClassNum());
+                        updateSt.setString(3, test.getStudent().getNo());
+                        updateSt.setString(4, test.getSubject().getCd());
+                        updateSt.setString(5, test.getSchool().getCd());
+                        updateSt.setInt(6, test.getNo());
 
-            int result = st.executeUpdate();
-            return result > 0;
+                        return updateSt.executeUpdate() > 0;
+                    }
+
+                } else {
+                    // 存在しない → INSERT
+                    try (PreparedStatement insertSt = con.prepareStatement(
+                            "INSERT INTO test (student_no, subject_cd, school_cd, no, point, class_num) " +
+                            "VALUES (?, ?, ?, ?, ?, ?)")) {
+
+                        insertSt.setString(1, test.getStudent().getNo());
+                        insertSt.setString(2, test.getSubject().getCd());
+                        insertSt.setString(3, test.getSchool().getCd());
+                        insertSt.setInt(4, test.getNo());
+                        insertSt.setInt(5, test.getPoint());
+                        insertSt.setString(6, test.getClassNum());
+
+                        return insertSt.executeUpdate() > 0;
+                    }
+                }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

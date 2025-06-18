@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.School;
+import bean.Student;
+import dao.StudentDao;
 import tool.Action;
 
 public class StudentCreateExecuteAction extends Action {
@@ -18,20 +20,38 @@ public class StudentCreateExecuteAction extends Action {
             return "login.jsp";
         }
 
-        String entYear = request.getParameter("entYear");
+        String entYearStr = request.getParameter("entYear");
         String no = request.getParameter("no");
         String name = request.getParameter("name");
         String classNum = request.getParameter("class_num");
 
-        System.out.println(entYear);
-        System.out.println(no);
-        System.out.println(name);
-        System.out.println(classNum);
-
-        if (entYear == null || entYear.isEmpty()) {
+        if (entYearStr == null || entYearStr.isEmpty()) {
                 request.setAttribute("error", "入学年度を選択してください。");
-                return "scoremanager/student_create.jsp";
+                return "scoremanager.main.StudentCreate.action";
             }
+
+        try {
+            Integer.parseInt(no); // 数字かどうかをチェック（整数以外は例外）
+        } catch (NumberFormatException e) {
+            request.setAttribute("error", "学生番号は数字で入力してください。");
+            return "scoremanager.main.StudentCreate.action";
+        }
+
+        StudentDao dao = new StudentDao();
+        if (dao.exists(no)) {
+            request.setAttribute("error", "その学生番号はすでに存在しています。");
+            return "scoremanager.main.StudentCreate.action";
+        }
+
+        int entYear = Integer.parseInt(entYearStr);
+        Student s = new Student();
+        s.setNo(no);
+        s.setName(name);
+        s.setClassNum(classNum);
+        s.setEntYear(entYear);
+        s.setAttend(false);
+        s.setSchool(school);
+        dao.insert(s);
 
 		return "scoremanager/student_create_done.jsp";
 	}
