@@ -42,6 +42,13 @@ public class TestRegistExecuteAction extends Action {
 			if (pointStr == null || pointStr.trim().isEmpty())
 				continue;
 
+			String trimmed = pointStr.trim();
+
+			   if (trimmed.matches(".*[０-９].*")) {
+			        request.setAttribute("error", "点数は半角数字で入力してください。");
+			        return "scoremanager.main.TestRegist.action";
+			    }
+
 			int point;
 			try {
 				point = Integer.parseInt(pointStr.trim());

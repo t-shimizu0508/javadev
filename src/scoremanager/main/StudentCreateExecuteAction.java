@@ -30,6 +30,11 @@ public class StudentCreateExecuteAction extends Action {
                 return "scoremanager.main.StudentCreate.action";
             }
 
+        if (no != null && !no.equals("") && no.matches(".*[０-９].*")) {
+            request.setAttribute("error", "学生番号は半角数字で入力してください。");
+            return "scoremanager.main.StudentCreate.action";
+        }
+
         try {
             Integer.parseInt(no); // 数字かどうかをチェック（整数以外は例外）
         } catch (NumberFormatException e) {
